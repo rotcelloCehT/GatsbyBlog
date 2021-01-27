@@ -12,6 +12,21 @@ module.exports = {
                 path:  `${__dirname}/src/`
             }
         },
-        'gatsby-transformer-remark'
+        'gatsby-plugin-sharp',
+        {
+            resolve: 'gatsby-transformer-remark',
+            options: {
+                plugins: [ // array of plugins specific to the remark transformer
+                    'gatsby-remark-relative-images',
+                    {
+                        resolve: 'gatsby-remark-images',
+                        options: {
+                            maxwidth: 750,
+                            linkImagesToOriginal: false
+                        }
+                    }
+                ]
+            }
+        }
     ]
 }
