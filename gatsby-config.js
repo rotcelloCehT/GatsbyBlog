@@ -4,6 +4,13 @@ module.exports = {
         author: 'Anthony Radin'
     },
     plugins: [
+        { // set up as object {} to add options
+            resolve: 'gatsby-source-contentful',
+            options: {
+                spaceId: process.env.CONTENTFUL_SPACE_ID,
+                accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+            }
+        },
         'gatsby-plugin-sass',
         {
             resolve: 'gatsby-source-filesystem',
@@ -21,7 +28,7 @@ module.exports = {
                     {
                         resolve: 'gatsby-remark-images',
                         options: {
-                            maxwidth: 750,
+                            maxWidth: 750,
                             linkImagesToOriginal: false
                         }
                     }

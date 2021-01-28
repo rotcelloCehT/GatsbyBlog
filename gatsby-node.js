@@ -1,19 +1,4 @@
 const path = require(`path`)
-module.exports.onCreateNode = ({ node, actions }) => {
-    const { createNodeField } = actions
-
-    if (node.internal.type === 'MarkdownRemark') {
-        const slug = path.basename(node.fileAbsolutePath, '.md')
-
-        createNodeField({
-            node,
-            name: 'slug',
-            value: slug
-        })
-    }
-
-}
-
 
 module.exports.createPages = async ({ graphql, actions }) => { // graphql in this case is not imported, it's a function 
     const { createPage } = actions                      // to which we pass a string...
@@ -22,24 +7,22 @@ module.exports.createPages = async ({ graphql, actions }) => { // graphql in thi
     //2. get markdown data
     const res = await graphql(`
         query{
-            allMarkdownRemark{
+            allContentfulBlogPost{
                 edges{
                     node{
-                        fields {
                         slug
-                        }
                     }
                 }
             }
         }
     `)
     //3. create pages
-    res.data.allMarkdownRemark.edges.forEach((edge) => {
+    res.data.allContentfulBlogPost.edges.forEach((edge) => {
         createPage({
             component: blogTemplate,
-            path: `/blog/${edge.node.fields.slug}`,
+            path: `/blog/${edge.node.slug}`,
             context: {
-                slug: edge.node.fields.slug // consider as ID.
+                slug: edge.node.slug // consider as ID.
             }
         })
     })
