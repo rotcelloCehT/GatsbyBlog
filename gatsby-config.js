@@ -4,11 +4,13 @@ module.exports = {
         author: 'Anthony Radin'
     },
     plugins: [
+        'gatsby-plugin-react-helmet',
         { // set up as object {} to add options
             resolve: 'gatsby-source-contentful',
             options: {
                 spaceId: process.env.CONTENTFUL_SPACE_ID,
-                accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+                accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+                downloadLocal: true
             }
         },
         'gatsby-plugin-sass',

@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout' // (../) means go up one directory
 import { Link, graphql, useStaticQuery} from 'gatsby'
+import Head from '../components/head'
 
 import blogStyles from './blog.module.scss'
 
@@ -26,6 +27,7 @@ function BlogPage(){
     return(
         <div>
             <Layout>
+            <Head title="Blog"/>
                 <h1>Blog</h1>
                 <hr></hr>
                 <ol className={blogStyles.posts}>
