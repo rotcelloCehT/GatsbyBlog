@@ -48,8 +48,7 @@ const Blog = (props) => {
                 const alt = "test"
                 const url = props.data.contentfulBlogPost.body.references[0].fixed.src
                 return (
-                <img src={url} alt={alt}/>,
-                <img src={props.data.contentfulBlogPost.body.references[1].fixed.src} alt={alt}/>
+                <img src={url} alt={alt}/>
                 )
             }
         }
